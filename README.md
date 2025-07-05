@@ -85,7 +85,7 @@ ML_API_URL=http://localhost:5050/generate
 
 ---
 
-## 🚧 Roadmap
+## 🚧 Roadmap ahead 
 
 * 🔎 Improve NLP matching with transformer-based classification
 * 📸 Add real product images using CDN/cloud sources
