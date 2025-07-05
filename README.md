@@ -1,83 +1,129 @@
+Bilkul bhai! Neeche tera **original `README.md`** base leke likh diya hai, bas updated structure and flow ke hisaab se polish kar diya hai:
+
+---
+
+```markdown
 # 🛒 PAWS SmartCart Companion
 
-**SmartCart Companion** is your AI-powered shopping assistant, crafted to simplify retail decisions using goal-based intent and budget prompts. Built with a modular Node + Flask + React stack, it integrates machine learning and a curated grocery dataset to deliver personalized cart suggestions.
+Welcome to **SmartCart Companion**, an AI-driven shopping assistant built to enhance customer experience and optimize in-store shopping with intelligent suggestions. Designed for the **Walmart Sparkathon**, this app demonstrates seamless ML + Backend + Frontend integration.
 
 ---
 
-## 🔧 Features
+## 📁 Project Structure
 
-- 🧠 **Natural Language Cart Generation**  
-  Input goals like _"Snacks under ₹100"_ or _"Puja items under ₹300"_ — get smart suggestions powered by an ML service.
-
-- 💬 **Occasion-Based AI**  
-  Understands intents like "college trip", "birthday", or "monthly groceries" using keyword classification.
-
-- 🛍️ **Curated Product Database**  
-  Built from a cleaned dataset of 25,000+ Indian grocery items.
-
-- 🚀 **Seamless Frontend-Backend Integration**  
-  React frontend talks to a Node backend, which in turn pings a Flask ML server.
-
-- 🎯 **Budget-Aware Suggestions**  
-  Always tries to fit products within your specified price range.
-
----
-
-## 🗂️ Tech Stack
-
-| Layer        | Tech                                                                 |
-|--------------|----------------------------------------------------------------------|
-| Frontend     | React + TailwindCSS + Vite                                           |
-| Backend API  | Node.js + Express                                                    |
-| ML Service   | Python + Flask                                                       |
-| Data Source  | Cleaned CSV → JSON via custom parser                                 |
-
----
-
-## 📊 Dataset Source
-
-This project uses a cleaned version of the **BigBasket Product Dataset**:
-
-🔗 [Indian Grocery Supermarket - BigBasket Dataset (Kaggle)](https://www.kaggle.com/code/ridamahmood005/indian-grocery-supermarket-big-basket-eda/input)
-
-Credit to **Rida Mahmood** for curating this dataset.
-
----
-
-## 🏁 How to Run Locally
-
-### 1. Clone the Repo
-
-```bash
-git clone https://github.com/hecker-200/PAWS-SmartCart-Companion.git
-cd PAWS-SmartCart-Companion
-````
-
-### 2. Install Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
 ```
 
-### 3. Run Backend
+PAWS-SmartCart-Companion/
+├── backend/
+│   ├── app.js               # Express server
+│   ├── routes/              # API routes
+│   ├── controllers/         # Logic for ML API consumption
+│   └── .env                 # Environment variables (ML\_API\_URL)
+├── ml/
+│   ├── app.py               # Flask ML API (Product Generator)
+│   ├── utils.py             # CSV cleaner + tag generator
+│   ├── cleaned\_products.json # Auto-generated product DB
+│   └── products.csv         # Raw data source
+├── frontend/
+│   ├── smartcart-walmart-guide/ # React frontend (search + results UI)
+│   └── ...
+└── README.md
+
+````
+
+---
+
+## 🚀 How It Works
+
+1. **Frontend (React + Tailwind)**  
+   User enters a query like:  
+   > `"monthly groceries under 400 rupees"`  
+   This is sent via POST to the backend `/api/cart/generate`.
+
+2. **Backend (Node.js + Express)**  
+   The backend reads `.env` → calls ML API (`http://localhost:5050/generate`) with query text.
+
+3. **ML API (Flask)**  
+   - Parses input
+   - Matches occasion-based or tag-based product sets
+   - Filters by budget
+   - Sends back JSON list of products
+
+4. **Frontend (again)**  
+   - Displays results as beautiful cards  
+   - Auto image suggestion & sorting
+
+---
+
+## 🧠 ML Layer (CSV → JSON → Smart Cart)
+
+- Uses `products.csv` with 25,000+ items
+- `utils.py` cleans & extracts tags from category, brand, description, etc.
+- Generates `cleaned_products.json` on startup
+- Smart matching with budget filtering + tag/occasion logic
+
+---
+
+## 🌐 APIs
+
+### POST `/api/cart/generate`
+```json
+{
+  "input": "puja items under 150 rupees"
+}
+````
+
+**Response:**
+
+```json
+{
+  "products": [
+    { "name": "Agarbatti", "price": 10, "tags": ["puja", "festive", ...] },
+    ...
+  ]
+}
+```
+
+---
+
+## 🛠 Setup Instructions
+
+### Backend (Node.js)
 
 ```bash
-cd ../backend
+cd backend
 npm install
 node app.js
 ```
 
-### 4. Run ML API
+### ML Server (Python Flask)
 
 ```bash
-cd ../ml
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+cd ml
+pip install -r requirements.txt
 python app.py
 ```
 
-Make sure your `.env` file in `/backend` has the ML URL:
+### Frontend (React)
+
+```bash
+cd frontend/smartcart-walmart-guide
+npm install
+npm start
+```
+
+---
+
+## 📸 Product Images
+
+(Upcoming):
+Integration with a free cloud API or dummy CDN for auto image fetching for Indian products like Kurkure, Maggi, etc.
+
+---
+
+## 🔒 Env Setup
+
+Create a `.env` in `/backend`:
 
 ```
 ML_API_URL=http://localhost:5050/generate
@@ -85,24 +131,29 @@ ML_API_URL=http://localhost:5050/generate
 
 ---
 
-## 🚧 Roadmap ahead 
+## ✨ Features
 
-* 🔎 Improve NLP matching with transformer-based classification
-* 📸 Add real product images using CDN/cloud sources
-* 🧠 Expand ML to include item popularity, stock, and customer profiling
-* 📱 PWA/mobile view with offline cart saving
-
----
-
-## 🤝 Contributing
-
-Wanna make SmartCart smarter? PRs are welcome!
-Drop a star ⭐ if this saved you from shopping stress 😄
+* 🔍 Occasion + Tag-based product generation
+* 💰 Budget filtering
+* 📦 Auto-generated product list from CSV
+* 🎨 Clean & responsive frontend cards
+* ⚙️ Easily scalable with any product data
 
 ---
 
-## 👨‍💻 Author
+## 💡 Sparkathon Theme
 
-Made with ❤️ by PAWS
+> *Using AI to enhance in-store experience, improve decision-making, and personalize retail journeys for Indian consumers.*
 
 ---
+
+## 🧑‍💻 Made by
+
+Adithya Subhash – with 💙 for innovation & sleepless debugging
+
+---
+
+```
+
+Let me know if you want a Hindi-style section bhi for presenting in front of Sparkathon judges or something super catchy for the top!
+```
