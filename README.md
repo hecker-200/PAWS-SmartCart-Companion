@@ -1,105 +1,108 @@
+# 🛒 PAWS SmartCart Companion
 
-# 🛒 SmartCart Companion
-
-### Behavioral & Emotional Data Powered Retail Optimization for Walmart
-
----
-
-## 🚀 About the Project
-
-SmartCart Companion is not just another shopping assistant — it's *the* future of retail tech. By harnessing behavioral and emotional data, this app transforms the in-store shopping experience, optimizing product placement, customer engagement, and ultimately boosting sales for Walmart. Imagine a shopping cart that *really* gets you!
+**SmartCart Companion** is your AI-powered shopping assistant, crafted to simplify retail decisions using goal-based intent and budget prompts. Built with a modular Node + Flask + React stack, it integrates machine learning and a curated grocery dataset to deliver personalized cart suggestions.
 
 ---
 
-## 🔥 Features
+## 🔧 Features
 
-- 🎯 Real-time behavioral analytics for personalized retail insights  
-- 🤖 Machine Learning API predicts shopping patterns & preferences  
-- 📊 Intuitive dashboard to track shopper engagement and inventory flow  
-- ⚡ Lightning-fast React frontend with sleek Tailwind CSS styling  
-- 🔄 Seamless backend integration using Node.js and Flask API  
-- 📱 Fully responsive design for any device  
+- 🧠 **Natural Language Cart Generation**  
+  Input goals like _"Snacks under ₹100"_ or _"Puja items under ₹300"_ — get smart suggestions powered by an ML service.
 
----
+- 💬 **Occasion-Based AI**  
+  Understands intents like "college trip", "birthday", or "monthly groceries" using keyword classification.
 
-## 🛠 Tech Stack
+- 🛍️ **Curated Product Database**  
+  Built from a cleaned dataset of 25,000+ Indian grocery items.
 
-| Layer           | Technology           |
-| --------------- | -------------------- |
-| Frontend        | React + Tailwind CSS |
-| Backend         | Node.js + Express    |
-| ML API          | Flask (Python)       |
-| Database        | MongoDB              |
-| Deployment      | (Your choice here!)  |
+- 🚀 **Seamless Frontend-Backend Integration**  
+  React frontend talks to a Node backend, which in turn pings a Flask ML server.
+
+- 🎯 **Budget-Aware Suggestions**  
+  Always tries to fit products within your specified price range.
 
 ---
 
-## 💡 Why SmartCart Companion?
+## 🗂️ Tech Stack
 
-Because shopping shouldn’t feel like guesswork. Our system learns customer moods and behaviors in real-time to optimize product recommendations and in-store logistics, making Walmart visits smoother, smarter, and way more satisfying.
-
----
-
-## 🎨 Styling & UX Magic
-
-- Inspired by Walmart’s iconic blue & yellow palette  
-- Smooth animations & micro-interactions for delightful browsing  
-- Responsive & accessible design, because everyone deserves the best  
+| Layer        | Tech                                                                 |
+|--------------|----------------------------------------------------------------------|
+| Frontend     | React + TailwindCSS + Vite                                           |
+| Backend API  | Node.js + Express                                                    |
+| ML Service   | Python + Flask                                                       |
+| Data Source  | Cleaned CSV → JSON via custom parser                                 |
 
 ---
 
-## ⚙️ Getting Started
+## 📊 Dataset Source
 
-1. **Clone the repo**  
-   ```bash
-   git clone https://github.com/<your-username>/SmartCart-Companion.git
-   cd SmartCart-Companion
+This project uses a cleaned version of the **BigBasket Product Dataset**:
+
+🔗 [Indian Grocery Supermarket - BigBasket Dataset (Kaggle)](https://www.kaggle.com/code/ridamahmood005/indian-grocery-supermarket-big-basket-eda/input)
+
+Credit to **Rida Mahmood** for curating this dataset.
+
+---
+
+## 🏁 How to Run Locally
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/hecker-200/PAWS-SmartCart-Companion.git
+cd PAWS-SmartCart-Companion
 ````
 
-2. **Install frontend dependencies**
+### 2. Install Frontend
 
-   ```bash
-   cd frontend
-   npm install
-   npm start
-   ```
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-3. **Run backend server**
+### 3. Run Backend
 
-   ```bash
-   cd backend
-   npm install
-   node index.js
-   ```
+```bash
+cd ../backend
+npm install
+node app.js
+```
 
-4. **Start Flask ML API**
+### 4. Run ML API
 
-   ```bash
-   cd ml-api
-   pip install -r requirements.txt
-   python app.py
-   ```
+```bash
+cd ../ml
+source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+python app.py
+```
 
----
+Make sure your `.env` file in `/backend` has the ML URL:
 
-## 🙌 Contribution
-
-Open for collabs and ideas! Feel free to fork, raise issues, or send PRs — let's make retail smarter together.
-
----
-
-## 📞 Contact
-
-Adithya Subhash (hecker)
-IIT Jodhpur | Software Engineer | Retail Tech Enthusiast
-[GitHub](https://github.com/<your-username>) | [LinkedIn](https://linkedin.com/in/<your-linkedin>)
+```
+ML_API_URL=http://localhost:5050/generate
+```
 
 ---
 
-**Ready to revolutionize shopping?**
-*Let’s build the future, one cart at a time.* 🚀🛒
+## 🚧 Roadmap
+
+* 🔎 Improve NLP matching with transformer-based classification
+* 📸 Add real product images using CDN/cloud sources
+* 🧠 Expand ML to include item popularity, stock, and customer profiling
+* 📱 PWA/mobile view with offline cart saving
 
 ---
 
-*Made with ❤️ and a lot of caffeine by hecker and pk*
+## 🤝 Contributing
 
+Wanna make SmartCart smarter? PRs are welcome!
+Drop a star ⭐ if this saved you from shopping stress 😄
+
+---
+
+## 👨‍💻 Author
+
+Made with ❤️ by PAWS
+
+---
