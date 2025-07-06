@@ -144,11 +144,8 @@ ML_API_URL=http://localhost:5050/generate
 
 ## 🧑‍💻 Made by
 
-Adithya Subhash – with 💙 for innovation & sleepless debugging
+PAWS – with 💙 for innovation & sleepless debugging
 
 ---
 
-```
 
-Let me know if you want a Hindi-style section bhi for presenting in front of Sparkathon judges or something super catchy for the top!
-```
