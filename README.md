@@ -1,8 +1,3 @@
-Bilkul bhai! Neeche tera **original `README.md`** base leke likh diya hai, bas updated structure and flow ke hisaab se polish kar diya hai:
-
----
-
-```markdown
 # 🛒 PAWS SmartCart Companion
 
 Welcome to **SmartCart Companion**, an AI-driven shopping assistant built to enhance customer experience and optimize in-store shopping with intelligent suggestions. Designed for the **Walmart Sparkathon**, this app demonstrates seamless ML + Backend + Frontend integration.
